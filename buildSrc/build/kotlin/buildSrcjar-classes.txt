@@ -1,0 +1,1 @@
+/Users/fahadnasrullah/Desktop/Projects/Foodie/buildSrc/build/classes/kotlin/main/Dependencies.class

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Foodie</string>
+    <string name="get_started_label">Get started</string>
+    <string name="food_for_everyone_label">Food for\nEveryone</string>
+    <string name="email_address_label">Email address</string>
+    <string name="password_label">Password</string>
+    <string name="forgot_password_label">Forgot password?</string>
+    <string name="action_login">Login</string>
+</resources>
