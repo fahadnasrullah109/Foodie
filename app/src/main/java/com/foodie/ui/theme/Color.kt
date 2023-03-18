@@ -65,4 +65,4 @@ val md_theme_dark_scrim = Color(0xFF000000)
 
 
 val seed = Color(0xFFFF4B3A)
-val login_signup_bg = Color(0xFFF2F2F2)
+val login_signup_bg = Color(0xFFEDEDED)

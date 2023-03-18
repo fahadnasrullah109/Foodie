@@ -48,6 +48,10 @@ object Dependencies {
     const val hilt = "com.google.dagger:hilt-android:$hiltVersion"
     const val hiltKapt = "com.google.dagger:hilt-compiler:$hiltVersion"
 
+    private const val pagerVersion = "0.25.0"
+    const val pager = "com.google.accompanist:accompanist-pager:$pagerVersion"
+    const val pagerIndicator = "com.google.accompanist:accompanist-pager-indicators:$pagerVersion"
+
     // JUnit
     private const val jUnitversion = "4.13.2"
     const val jUnit = "junit:junit:$jUnitversion"

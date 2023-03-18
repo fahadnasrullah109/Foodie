@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.foodie.presentation.login.LoginScreen
+import com.foodie.presentation.auth.login.LoginScreen
 import com.foodie.presentation.navigation.FoodieAppNavHost
 import com.foodie.ui.theme.FoodieTheme
 import dagger.hilt.android.AndroidEntryPoint

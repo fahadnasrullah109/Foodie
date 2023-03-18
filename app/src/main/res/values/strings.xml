@@ -4,6 +4,8 @@
     <string name="food_for_everyone_label">Food for\nEveryone</string>
     <string name="email_address_label">Email address</string>
     <string name="password_label">Password</string>
-    <string name="forgot_password_label">Forgot password?</string>
+    <string name="forgot_password_label">Forgot passcode?</string>
     <string name="action_login">Login</string>
+    <string name="action_register">Register</string>
+    <string name="username_label">Username</string>
 </resources>

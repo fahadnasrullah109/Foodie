@@ -9,8 +9,8 @@ import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.foodie.presentation.auth.AuthScreen
 import com.foodie.presentation.landing.LandingScreen
-import com.foodie.presentation.login.LoginScreen
 
 @Composable
 fun FoodieAppNavHost(
@@ -36,11 +36,10 @@ fun NavGraphBuilder.landingGraph(navController: NavController) {
 
 fun NavGraphBuilder.authGraph(navController: NavController) {
     composable(Destinations.Auth.route) {
-        LoginScreen(modifier = Modifier.fillMaxSize(), onForgotPassword = {
-
-        }) {
-
-        }
+        AuthScreen(modifier = Modifier.fillMaxSize(),
+            onForgotPassword = {},
+            onLoginSuccess = {},
+            onRegisterSuccess = {})
     }
 }
 
