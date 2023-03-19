@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.foodie.presentation.auth.AuthScreen
+import com.foodie.presentation.drawer.DrawerScreen
 import com.foodie.presentation.landing.LandingScreen
 
 @Composable
@@ -23,23 +24,37 @@ fun FoodieAppNavHost(
     ) {
         landingGraph(navController)
         authGraph(navController)
+        authDrawer(navController)
     }
 }
 
 fun NavGraphBuilder.landingGraph(navController: NavController) {
     composable(Destinations.Landing.route) {
         LandingScreen(modifier = Modifier.fillMaxSize()) {
-            navController.navigate(route = Destinations.Auth.route)
+            navController.navigate(route = Destinations.Auth.route, navOptions = navOptions {
+                popUpTo(Destinations.Landing.route) { inclusive = true }
+            })
         }
     }
 }
 
 fun NavGraphBuilder.authGraph(navController: NavController) {
     composable(Destinations.Auth.route) {
-        AuthScreen(modifier = Modifier.fillMaxSize(),
-            onForgotPassword = {},
-            onLoginSuccess = {},
-            onRegisterSuccess = {})
+        AuthScreen(modifier = Modifier.fillMaxSize(), onForgotPassword = {}, onLoginSuccess = {
+            navController.navigate(route = Destinations.Drawer.route, navOptions = navOptions {
+                popUpTo(Destinations.Auth.route) { inclusive = true }
+            })
+        }, onRegisterSuccess = {
+            navController.navigate(route = Destinations.Drawer.route, navOptions = navOptions {
+                popUpTo(Destinations.Auth.route) { inclusive = true }
+            })
+        })
+    }
+}
+
+fun NavGraphBuilder.authDrawer(navController: NavController) {
+    composable(Destinations.Drawer.route) {
+        DrawerScreen(modifier = Modifier.fillMaxSize(), navController = navController)
     }
 }
 
