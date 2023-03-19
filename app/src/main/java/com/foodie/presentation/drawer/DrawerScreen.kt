@@ -17,6 +17,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.foodie.R
 import com.foodie.presentation.home.HomeScreen
+import com.foodie.presentation.navigation.Destinations
 import com.foodie.ui.theme.FoodieTheme
 import com.foodie.ui.theme.login_signup_bg
 import kotlinx.coroutines.launch
@@ -76,7 +77,9 @@ fun DrawerScreen(modifier: Modifier = Modifier, navController: NavController) {
                     )
                 }
             }, actions = {
-                IconButton(onClick = { /* doSomething() */ }) {
+                IconButton(onClick = {
+                    navController.navigate(route = Destinations.Cart.route)
+                }) {
                     Icon(
                         painter = painterResource(R.drawable.ic_navigation_shopping_cart),
                         contentDescription = "cart icon"

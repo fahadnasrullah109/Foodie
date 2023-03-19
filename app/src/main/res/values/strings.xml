@@ -15,4 +15,7 @@
     <string name="security_label">Security</string>
     <string name="signout_label">Sign-out</string>
     <string name="delicious_food_for_you">Delicious\nfood for you</string>
+    <string name="empty_cart">Ohh snap! Nothing here yet</string>
+    <string name="cart_label">Cart</string>
+    <string name="add_items_to_cart">Please add food items into cart to checkout.</string>
 </resources>

@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.foodie.presentation.auth.AuthScreen
+import com.foodie.presentation.cart.CartScreen
 import com.foodie.presentation.drawer.DrawerScreen
 import com.foodie.presentation.landing.LandingScreen
 
@@ -25,6 +26,7 @@ fun FoodieAppNavHost(
         landingGraph(navController)
         authGraph(navController)
         authDrawer(navController)
+        cartGraph(navController)
     }
 }
 
@@ -55,6 +57,14 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
 fun NavGraphBuilder.authDrawer(navController: NavController) {
     composable(Destinations.Drawer.route) {
         DrawerScreen(modifier = Modifier.fillMaxSize(), navController = navController)
+    }
+}
+
+fun NavGraphBuilder.cartGraph(navController: NavController) {
+    composable(Destinations.Cart.route) {
+        CartScreen(modifier = Modifier.fillMaxSize()) {
+            navController.navigateUp()
+        }
     }
 }
 
