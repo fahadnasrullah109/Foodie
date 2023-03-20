@@ -60,6 +60,7 @@ fun DrawerScreen(modifier: Modifier = Modifier, navController: NavController) {
                     onClick = {
                         scope.launch { drawerState.close() }
                         selectedItem = item
+                        handleNavigation(selectedItem, navController)
                     },
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
@@ -95,6 +96,17 @@ fun DrawerScreen(modifier: Modifier = Modifier, navController: NavController) {
             )
         })
     })
+}
+
+private fun handleNavigation(selectedItem: DrawerItem, navController: NavController) {
+    when (selectedItem) {
+        DrawerItem.Offers -> navController.navigate(route = Destinations.Offers.route)
+        DrawerItem.Orders -> navController.navigate(route = Destinations.Orders.route)
+        DrawerItem.Privacy -> navController.navigate(route = Destinations.Privacy.route)
+        DrawerItem.Profile -> navController.navigate(route = Destinations.Profile.route)
+        DrawerItem.Security -> navController.navigate(route = Destinations.Security.route)
+        DrawerItem.SignOut -> TODO()
+    }
 }
 
 @Preview

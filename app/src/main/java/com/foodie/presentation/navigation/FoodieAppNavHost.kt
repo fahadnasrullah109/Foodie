@@ -13,6 +13,11 @@ import com.foodie.presentation.auth.AuthScreen
 import com.foodie.presentation.cart.CartScreen
 import com.foodie.presentation.drawer.DrawerScreen
 import com.foodie.presentation.landing.LandingScreen
+import com.foodie.presentation.offers.OffersScreen
+import com.foodie.presentation.order.OrdersScreen
+import com.foodie.presentation.privacy.PrivacyScreen
+import com.foodie.presentation.profile.ProfileScreen
+import com.foodie.presentation.security.SecurityScreen
 
 @Composable
 fun FoodieAppNavHost(
@@ -27,6 +32,11 @@ fun FoodieAppNavHost(
         authGraph(navController)
         authDrawer(navController)
         cartGraph(navController)
+        profileGraph(navController)
+        ordersGraph(navController)
+        offersGraph(navController)
+        privacyGraph(navController)
+        securityGraph(navController)
     }
 }
 
@@ -63,6 +73,46 @@ fun NavGraphBuilder.authDrawer(navController: NavController) {
 fun NavGraphBuilder.cartGraph(navController: NavController) {
     composable(Destinations.Cart.route) {
         CartScreen(modifier = Modifier.fillMaxSize()) {
+            navController.navigateUp()
+        }
+    }
+}
+
+fun NavGraphBuilder.profileGraph(navController: NavController) {
+    composable(Destinations.Profile.route) {
+        ProfileScreen(modifier = Modifier.fillMaxSize()) {
+            navController.navigateUp()
+        }
+    }
+}
+
+fun NavGraphBuilder.ordersGraph(navController: NavController) {
+    composable(Destinations.Orders.route) {
+        OrdersScreen(modifier = Modifier.fillMaxSize()) {
+            navController.navigateUp()
+        }
+    }
+}
+
+fun NavGraphBuilder.offersGraph(navController: NavController) {
+    composable(Destinations.Offers.route) {
+        OffersScreen(modifier = Modifier.fillMaxSize()) {
+            navController.navigateUp()
+        }
+    }
+}
+
+fun NavGraphBuilder.privacyGraph(navController: NavController) {
+    composable(Destinations.Privacy.route) {
+        PrivacyScreen(modifier = Modifier.fillMaxSize()) {
+            navController.navigateUp()
+        }
+    }
+}
+
+fun NavGraphBuilder.securityGraph(navController: NavController) {
+    composable(Destinations.Security.route) {
+        SecurityScreen(modifier = Modifier.fillMaxSize()) {
             navController.navigateUp()
         }
     }

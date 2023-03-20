@@ -1,7 +1,7 @@
 package com.foodie.ui.theme
 import androidx.compose.ui.graphics.Color
 
-val md_theme_light_primary = Color(0xFFFF4B3A)
+val md_theme_light_primary = Color(0xFFFA4A0C)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFFFDAD5)
 val md_theme_light_onPrimaryContainer = Color(0xFF410000)
