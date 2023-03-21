@@ -80,8 +80,10 @@ fun NavGraphBuilder.cartGraph(navController: NavController) {
 
 fun NavGraphBuilder.profileGraph(navController: NavController) {
     composable(Destinations.Profile.route) {
-        ProfileScreen(modifier = Modifier.fillMaxSize()) {
+        ProfileScreen(modifier = Modifier.fillMaxSize(), onBack = {
             navController.navigateUp()
+        }) {
+            
         }
     }
 }

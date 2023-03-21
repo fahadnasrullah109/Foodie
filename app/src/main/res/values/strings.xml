@@ -25,4 +25,13 @@
     <string name="no_internet_label">No internet Connection</string>
     <string name="no_internet_desc_label">Your internet connection is currently\nnot available please check or try again.</string>
     <string name="try_again">Try again</string>
+    <string name="action_update">Update</string>
+    <string name="information_label">Information</string>
+    <string name="profile_title">John Doe</string>
+    <string name="email_placeholder">john.doe@xyz.com</string>
+    <string name="profile_address_placeholder">No 15 uti street off ovie palace road effurun delta state</string>
+    <string name="payment_method_label">Payment Method</string>
+    <string name="card_label">Card</string>
+    <string name="bank_label">Bank</string>
+    <string name="paypal_label">Paypal</string>
 </resources>

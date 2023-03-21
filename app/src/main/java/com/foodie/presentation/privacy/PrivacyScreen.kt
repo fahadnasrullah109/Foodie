@@ -1,10 +1,6 @@
 package com.foodie.presentation.privacy
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -26,17 +22,16 @@ fun PrivacyScreen(modifier: Modifier = Modifier, onBack: () -> Unit) {
         FoodieTopAppBar(title = R.string.privacy_label, onBack = onBack)
     }, content = { innerPadding ->
         PrivacyContent(
-            modifier = Modifier
-                .padding(innerPadding)
+            modifier = modifier, innerPaddingValues = innerPadding
         )
     })
 }
 
 @Composable
-fun PrivacyContent(modifier: Modifier) {
-    Column(modifier = modifier.verticalScroll(rememberScrollState())) {
+fun PrivacyContent(modifier: Modifier, innerPaddingValues: PaddingValues) {
+    Column(modifier = modifier.padding(innerPaddingValues).padding(all = 20.dp).verticalScroll(rememberScrollState())) {
         Text(
-            modifier = modifier.padding(horizontal = 20.dp),
+            modifier = modifier,
             text = stringResource(id = R.string.ipsum_text)
         )
     }
