@@ -10,4 +10,5 @@ sealed class Destinations(val route: String) {
     object Privacy : Destinations("privacy")
     object Offers : Destinations("offers")
     object Security : Destinations("security")
+    object History : Destinations("history")
 }

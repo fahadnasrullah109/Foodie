@@ -34,4 +34,6 @@
     <string name="card_label">Card</string>
     <string name="bank_label">Bank</string>
     <string name="paypal_label">Paypal</string>
+    <string name="history_label">History</string>
+    <string name="no_history_yet_label">No history yet</string>
 </resources>

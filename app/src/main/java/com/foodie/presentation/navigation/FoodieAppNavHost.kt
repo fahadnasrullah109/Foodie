@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.foodie.presentation.auth.AuthScreen
 import com.foodie.presentation.cart.CartScreen
 import com.foodie.presentation.drawer.DrawerScreen
+import com.foodie.presentation.history.HistoryScreen
 import com.foodie.presentation.landing.LandingScreen
 import com.foodie.presentation.offers.OffersScreen
 import com.foodie.presentation.order.OrdersScreen
@@ -37,6 +38,7 @@ fun FoodieAppNavHost(
         offersGraph(navController)
         privacyGraph(navController)
         securityGraph(navController)
+        historyGraph(navController)
     }
 }
 
@@ -83,15 +85,17 @@ fun NavGraphBuilder.profileGraph(navController: NavController) {
         ProfileScreen(modifier = Modifier.fillMaxSize(), onBack = {
             navController.navigateUp()
         }) {
-            
+
         }
     }
 }
 
 fun NavGraphBuilder.ordersGraph(navController: NavController) {
     composable(Destinations.Orders.route) {
-        OrdersScreen(modifier = Modifier.fillMaxSize()) {
+        OrdersScreen(modifier = Modifier.fillMaxSize(), onBack = {
             navController.navigateUp()
+        }) {
+
         }
     }
 }
@@ -116,6 +120,16 @@ fun NavGraphBuilder.securityGraph(navController: NavController) {
     composable(Destinations.Security.route) {
         SecurityScreen(modifier = Modifier.fillMaxSize()) {
             navController.navigateUp()
+        }
+    }
+}
+
+fun NavGraphBuilder.historyGraph(navController: NavController) {
+    composable(Destinations.History.route) {
+        HistoryScreen(modifier = Modifier.fillMaxSize(), onBack = {
+            navController.navigateUp()
+        }) {
+
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.foodie.presentation.order
+package com.foodie.presentation.history
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -24,12 +24,13 @@ import com.foodie.ui.theme.FoodieTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OrdersScreen(modifier: Modifier = Modifier, onBack: () -> Unit, startOrdering: () -> Unit) {
+fun HistoryScreen(modifier: Modifier = Modifier, onBack: () -> Unit, startOrdering: () -> Unit) {
     Scaffold(modifier = modifier, topBar = {
-        FoodieTopAppBar(title = R.string.orders_label, onBack = onBack)
+        FoodieTopAppBar(title = R.string.history_label, onBack = onBack)
     }, content = { innerPadding ->
-        OrdersEmptyContent(
-            modifier = Modifier.fillMaxSize(),
+        HistoryEmptyContent(
+            modifier = modifier
+                .fillMaxSize(),
             innerPaddingValues = innerPadding,
             startOrdering = startOrdering
         )
@@ -37,19 +38,13 @@ fun OrdersScreen(modifier: Modifier = Modifier, onBack: () -> Unit, startOrderin
 }
 
 @Composable
-fun OrdersContent(modifier: Modifier) {
+fun HistoryContent(modifier: Modifier) {
 
 }
 
 @Composable
-fun OrdersEmptyContent(
-    modifier: Modifier = Modifier, innerPaddingValues: PaddingValues, startOrdering: () -> Unit
-) {
-    ConstraintLayout(
-        modifier = modifier
-            .padding(innerPaddingValues)
-            .padding(all = 20.dp)
-    ) {
+fun HistoryEmptyContent(modifier: Modifier = Modifier, innerPaddingValues: PaddingValues,startOrdering: () -> Unit) {
+    ConstraintLayout(modifier = modifier.padding(innerPaddingValues).padding(all = 20.dp)) {
         val (column, button) = createRefs()
         Column(
             modifier = modifier.constrainAs(column) {
@@ -65,11 +60,11 @@ fun OrdersEmptyContent(
         ) {
             Image(
                 modifier = Modifier.size(150.dp),
-                painter = painterResource(id = R.drawable.ic_empty_orders),
-                contentDescription = "empty orders"
+                painter = painterResource(id = R.drawable.ic_empty_history),
+                contentDescription = "empty history"
             )
             Spacer(modifier = Modifier.padding(top = 20.dp))
-            Text(text = stringResource(id = R.string.no_orders_yet_label), fontSize = 20.sp)
+            Text(text = stringResource(id = R.string.no_history_yet_label), fontSize = 20.sp)
             Spacer(modifier = Modifier.padding(top = 10.dp))
             Text(
                 text = stringResource(id = R.string.no_orders_des_label),
@@ -83,8 +78,7 @@ fun OrdersEmptyContent(
                 .constrainAs(button) {
                     bottom.linkTo(parent.bottom)
                     width = Dimension.fillToConstraints
-                },
-            text = stringResource(id = R.string.start_ordering_label),
+                }, text = stringResource(id = R.string.start_ordering_label),
             onClick = startOrdering
         )
     }
@@ -92,10 +86,8 @@ fun OrdersEmptyContent(
 
 @Preview
 @Composable
-fun OrdersScreenPreview() {
+fun HistoryScreenPreview() {
     FoodieTheme {
-        OrdersScreen(modifier = Modifier.fillMaxSize(), onBack = {}) {}
+        HistoryScreen(modifier = Modifier.fillMaxSize(), onBack = {}) {}
     }
 }
-
-
