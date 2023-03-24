@@ -40,7 +40,7 @@ object Dependencies {
     val material3 = "androidx.compose.material3:material3:$materialVersion"
 
     // Splash
-    private const val splashVersion = "1.0.0-beta02"
+    private const val splashVersion = "1.0.0"
     const val splashScreen = "androidx.core:core-splashscreen:$splashVersion"
 
     // Dagger Hilt

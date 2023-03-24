@@ -62,6 +62,7 @@ dependencies {
     implementation(Dependencies.koinAndroid)
     implementation(Dependencies.coil)
     implementation(Dependencies.serializationCore)
+    implementation(Dependencies.splashScreen)
 
     implementation(Dependencies.hilt)
     kapt(Dependencies.hiltKapt)
