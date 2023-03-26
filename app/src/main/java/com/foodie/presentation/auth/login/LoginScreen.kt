@@ -24,21 +24,19 @@ import com.foodie.ui.theme.FoodieTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    modifier: Modifier = Modifier, onForgotPassword: () -> Unit, onLoginSuccess: () -> Unit
+    modifier: Modifier = Modifier,
+    viewModel: LoginViewModel,
+    onForgotPassword: () -> Unit,
+    onLoginSuccess: () -> Unit
 ) {
     ConstraintLayout(
         modifier = modifier
     ) {
         val (email, password, forgotPassword, loginBtn) = createRefs()
-        var emailText by remember {
-            mutableStateOf("")
-        }
-        var passwordText by remember {
-            mutableStateOf("")
-        }
 
-        TextField(value = emailText,
-            onValueChange = { emailText = it },
+
+        TextField(value = viewModel.emailText,
+            onValueChange = { viewModel.emailText = it },
             label = { Text(text = stringResource(id = R.string.email_address_label)) },
             maxLines = 1,
             textStyle = TextStyle(color = Color.Black),
@@ -49,8 +47,8 @@ fun LoginScreen(
                 }
                 .padding(20.dp))
 
-        TextField(value = passwordText,
-            onValueChange = { passwordText = it },
+        TextField(value = viewModel.passwordText,
+            onValueChange = { viewModel.passwordText = it },
             label = { Text(text = stringResource(id = R.string.password_label)) },
             maxLines = 1,
             textStyle = TextStyle(color = Color.Black),
@@ -91,7 +89,10 @@ fun LoginScreen(
 @Composable
 fun LoginScreenPreview() {
     FoodieTheme {
-        LoginScreen(modifier = Modifier.fillMaxSize(), onForgotPassword = {}) {
+        LoginScreen(
+            modifier = Modifier.fillMaxSize(),
+            viewModel = LoginViewModel(),
+            onForgotPassword = {}) {
 
         }
     }

@@ -23,23 +23,15 @@ import com.foodie.ui.theme.FoodieTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreen(modifier: Modifier = Modifier, onRegisterSuccess: () -> Unit) {
+fun RegisterScreen(
+    modifier: Modifier = Modifier, viewModel: RegisterViewModel, onRegisterSuccess: () -> Unit
+) {
     ConstraintLayout(
         modifier = modifier
     ) {
         val (username, email, password, registerBtn) = createRefs()
-        var usernameText by remember {
-            mutableStateOf("")
-        }
-        var emailText by remember {
-            mutableStateOf("")
-        }
-        var passwordText by remember {
-            mutableStateOf("")
-        }
-
-        TextField(value = usernameText,
-            onValueChange = { usernameText = it },
+        TextField(value = viewModel.usernameText,
+            onValueChange = { viewModel.usernameText = it },
             label = { Text(text = stringResource(id = R.string.username_label)) },
             maxLines = 1,
             textStyle = TextStyle(color = Color.Black),
@@ -50,8 +42,8 @@ fun RegisterScreen(modifier: Modifier = Modifier, onRegisterSuccess: () -> Unit)
                 }
                 .padding(20.dp))
 
-        TextField(value = emailText,
-            onValueChange = { emailText = it },
+        TextField(value = viewModel.emailText,
+            onValueChange = { viewModel.emailText = it },
             label = { Text(text = stringResource(id = R.string.email_address_label)) },
             maxLines = 1,
             textStyle = TextStyle(color = Color.Black),
@@ -62,8 +54,8 @@ fun RegisterScreen(modifier: Modifier = Modifier, onRegisterSuccess: () -> Unit)
                 }
                 .padding(20.dp))
 
-        TextField(value = passwordText,
-            onValueChange = { passwordText = it },
+        TextField(value = viewModel.passwordText,
+            onValueChange = { viewModel.passwordText = it },
             label = { Text(text = stringResource(id = R.string.password_label)) },
             maxLines = 1,
             textStyle = TextStyle(color = Color.Black),
@@ -96,6 +88,6 @@ fun RegisterScreen(modifier: Modifier = Modifier, onRegisterSuccess: () -> Unit)
 @Composable
 fun RegisterScreenPreview() {
     FoodieTheme {
-        RegisterScreen(modifier = Modifier.fillMaxSize()) {}
+        RegisterScreen(modifier = Modifier.fillMaxSize(), viewModel = RegisterViewModel()) {}
     }
 }
