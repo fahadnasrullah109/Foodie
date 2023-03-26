@@ -7,7 +7,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -21,10 +21,9 @@ import com.foodie.R
 import com.foodie.ui.theme.FoodieTheme
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
-    var tabIndex by remember {
-        mutableStateOf(0)
-    }
+fun HomeScreen(
+    modifier: Modifier = Modifier, tabIndex: Int = 0, onTabSelected: (index: Int) -> Unit
+) {
     val tabs = listOf(
         TabIcon(R.drawable.ic_home, R.drawable.ic_home_selected),
         TabIcon(R.drawable.ic_favourite, R.drawable.ic_favorite_selected),
@@ -36,13 +35,12 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             1 -> FavouriteTab(modifier = modifier.weight(1f))
             2 -> HistoryTab(modifier = modifier.weight(1f))
         }
-        TabRow(
-            modifier = Modifier.padding(horizontal = 25.dp), selectedTabIndex = tabIndex,
-            indicator = {}
-        ) {
+        TabRow(modifier = Modifier.padding(horizontal = 25.dp),
+            selectedTabIndex = tabIndex,
+            indicator = {}) {
             tabs.forEachIndexed { index, icon ->
                 val selected = tabIndex == index
-                Tab(selected = selected, onClick = { tabIndex = index }, icon = {
+                Tab(selected = selected, onClick = {onTabSelected(index)}, icon = {
                     Icon(
                         painter = painterResource(id = if (selected) icon.selectedIcon else icon.unselectedIcon),
                         tint = Color.Unspecified,
@@ -90,6 +88,6 @@ data class TabIcon(val unselectedIcon: Int, val selectedIcon: Int)
 @Composable
 fun HomeScreenPreview() {
     FoodieTheme {
-        HomeScreen(modifier = Modifier.fillMaxSize())
+        HomeScreen(modifier = Modifier.fillMaxSize()) {}
     }
 }

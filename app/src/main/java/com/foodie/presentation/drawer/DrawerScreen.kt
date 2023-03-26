@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -28,6 +29,9 @@ import kotlinx.coroutines.launch
 fun DrawerScreen(modifier: Modifier = Modifier, navController: NavController) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+    var tabIndex by rememberSaveable {
+        mutableStateOf(0)
+    }
     val drawerItems = listOf(
         DrawerItem.Profile,
         DrawerItem.Orders,
@@ -92,8 +96,11 @@ fun DrawerScreen(modifier: Modifier = Modifier, navController: NavController) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .padding(start = 20.dp, end = 20.dp)
-            )
+                    .padding(start = 20.dp, end = 20.dp),
+                tabIndex = tabIndex
+            ) {
+                tabIndex = it
+            }
         })
     })
 }
