@@ -9,8 +9,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.foodie.ui.theme.FoodieTheme
 
 @Composable
-fun FoodieButton(text : String, modifier : Modifier = Modifier, onClick : () -> Unit = {}) {
-    Button(modifier = modifier, onClick = onClick) {
+fun FoodieButton(text : String, modifier : Modifier = Modifier, isEnabled : Boolean = true, onClick : () -> Unit = {}) {
+    Button(modifier = modifier,  enabled = isEnabled, onClick = onClick) {
         Text(text = text, color = Color.White)
     }
 }

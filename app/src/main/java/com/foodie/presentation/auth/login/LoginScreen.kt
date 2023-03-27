@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,23 +35,30 @@ fun LoginScreen(
     ) {
         val (email, password, forgotPassword, loginBtn) = createRefs()
 
+        val emailText by viewModel.emailText.collectAsState()
+        val passwordText by viewModel.passwordText.collectAsState()
+        val isFormValid by viewModel.isFormValid.collectAsState()
 
-        TextField(value = viewModel.emailText,
-            onValueChange = { viewModel.emailText = it },
+        TextField(value = emailText,
+            onValueChange = { viewModel.setEmail(it) },
             label = { Text(text = stringResource(id = R.string.email_address_label)) },
-            maxLines = 1,
+            singleLine = true,
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Email, imeAction = ImeAction.Next
+            ),
             textStyle = TextStyle(color = Color.Black),
             modifier = Modifier
                 .fillMaxWidth()
                 .constrainAs(email) {
                     top.linkTo(parent.top, 16.dp)
                 }
-                .padding(20.dp))
+                .padding(20.dp),
+            isError = emailText.isNotEmpty() && !emailText.isValidEmail())
 
-        TextField(value = viewModel.passwordText,
-            onValueChange = { viewModel.passwordText = it },
+        TextField(value = passwordText,
+            onValueChange = { viewModel.setPassword(it) },
             label = { Text(text = stringResource(id = R.string.password_label)) },
-            maxLines = 1,
+            singleLine = true,
             textStyle = TextStyle(color = Color.Black),
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -59,7 +67,8 @@ fun LoginScreen(
                 .constrainAs(password) {
                     top.linkTo(email.bottom, 10.dp)
                 }
-                .padding(20.dp))
+                .padding(20.dp),
+            isError = passwordText.isNotEmpty() && !passwordText.isValidPassword())
 
         TextButton(onClick = onForgotPassword, modifier = Modifier.constrainAs(forgotPassword) {
             top.linkTo(password.bottom, 5.dp)
@@ -80,6 +89,7 @@ fun LoginScreen(
                 width = Dimension.fillToConstraints
             }
             .height(60.dp),
+            isEnabled = isFormValid,
             text = stringResource(id = R.string.action_login),
             onClick = onLoginSuccess)
     }
@@ -92,8 +102,6 @@ fun LoginScreenPreview() {
         LoginScreen(
             modifier = Modifier.fillMaxSize(),
             viewModel = LoginViewModel(),
-            onForgotPassword = {}) {
-
-        }
+            onForgotPassword = {}) {}
     }
 }
