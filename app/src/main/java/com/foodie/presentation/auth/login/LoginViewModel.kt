@@ -24,10 +24,10 @@ class LoginViewModel @Inject constructor(
 
     fun onEvent(event: LoginEvents) {
         when (event) {
-            is LoginEvents.EmailChanged -> _uiState.value = uiState.value.copy(
+            is LoginEvents.EmailChanged -> _uiState.value = _uiState.value.copy(
                 email = event.email
             )
-            is LoginEvents.PasswordChanged -> _uiState.value = uiState.value.copy(
+            is LoginEvents.PasswordChanged -> _uiState.value = _uiState.value.copy(
                 password = event.password
             )
             LoginEvents.LoginClicked -> login()
@@ -41,27 +41,27 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun login() {
-        val emailResult = emailValidator.validate(uiState.value.email)
-        val passwordResult = passwordValidator.validate(uiState.value.password)
+        val emailResult = emailValidator.validate(_uiState.value.email)
+        val passwordResult = passwordValidator.validate(_uiState.value.password)
         val hasError = listOf(emailResult, passwordResult).any {
             it is ValidationResult.Error
         }
         if (hasError) {
             if (emailResult is ValidationResult.Error) {
-                _uiState.value = uiState.value.copy(
+                _uiState.value = _uiState.value.copy(
                     emailError = emailResult.message
                 )
             } else {
-                _uiState.value = uiState.value.copy(
+                _uiState.value = _uiState.value.copy(
                     emailError = null
                 )
             }
             if (passwordResult is ValidationResult.Error) {
-                _uiState.value = uiState.value.copy(
+                _uiState.value = _uiState.value.copy(
                     passwordError = passwordResult.message
                 )
             } else {
-                _uiState.value = uiState.value.copy(
+                _uiState.value = _uiState.value.copy(
                     passwordError = null
                 )
             }
@@ -71,12 +71,11 @@ class LoginViewModel @Inject constructor(
                 delay(3000L)
 
                 withContext(Dispatchers.Main) {
-                    _uiState.value = uiState.value.copy(
+                    _uiState.value = _uiState.value.copy(
                         isLoading = false, loginSuccess = true
                     )
                 }
             }
         }
     }
-
 }

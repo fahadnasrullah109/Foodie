@@ -2,6 +2,7 @@ package com.foodie.di
 
 import com.foodie.domain.usecases.EmailValidationUseCase
 import com.foodie.domain.usecases.PasswordValidationUseCase
+import com.foodie.domain.usecases.UsernameValidationUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,5 +20,9 @@ class UseCasesModules {
     @ViewModelScoped
     @Provides
     fun providePasswordValidationUseCase() = PasswordValidationUseCase()
+
+    @ViewModelScoped
+    @Provides
+    fun provideUsernameValidationUseCase() = UsernameValidationUseCase()
 
 }

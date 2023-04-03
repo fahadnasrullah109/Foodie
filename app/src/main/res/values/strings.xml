@@ -40,4 +40,6 @@
     <string name="email_validation_error">Email is not valid.</string>
     <string name="password_empty_error">Password shouldn\'t be empty.</string>
     <string name="password_validation_error">Password is not valid.</string>
+    <string name="username_empty_error">Username can\'t be empty.</string>
+    <string name="username_validation_error">Username is not valid.</string>
 </resources>
