@@ -36,4 +36,8 @@
     <string name="paypal_label">Paypal</string>
     <string name="history_label">History</string>
     <string name="no_history_yet_label">No history yet</string>
+    <string name="email_empty_error">Email shouldn\'t be empty.</string>
+    <string name="email_validation_error">Email is not valid.</string>
+    <string name="password_empty_error">Password shouldn\'t be empty.</string>
+    <string name="password_validation_error">Password is not valid.</string>
 </resources>

@@ -40,7 +40,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion  = "1.2.0"
+        kotlinCompilerExtensionVersion  = "1.4.4"
     }
     packagingOptions {
         resources {
@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-   implementation(Dependencies.composeUI)
+    implementation(Dependencies.composeUI)
     implementation(Dependencies.composeTooling)
     implementation(Dependencies.composePreview)
     implementation(Dependencies.composeFoundation)
@@ -59,12 +59,13 @@ dependencies {
     implementation(Dependencies.composeUtil)
     implementation(Dependencies.material3)
     implementation(Dependencies.composeContraint)
-    implementation(Dependencies.koinAndroid)
+    implementation(Dependencies.composeLifecycle)
     implementation(Dependencies.coil)
     implementation(Dependencies.serializationCore)
     implementation(Dependencies.splashScreen)
 
     implementation(Dependencies.hilt)
+    implementation(Dependencies.hiltCompose)
     kapt(Dependencies.hiltKapt)
 
 

@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.foodie.R
 import com.foodie.components.FoodieButton
 import com.foodie.ui.theme.FoodieTheme
@@ -24,7 +25,7 @@ import com.foodie.ui.theme.FoodieTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
-    modifier: Modifier = Modifier, viewModel: RegisterViewModel, onRegisterSuccess: () -> Unit
+    modifier: Modifier = Modifier, viewModel: RegisterViewModel = hiltViewModel(), onRegisterSuccess: () -> Unit
 ) {
     ConstraintLayout(
         modifier = modifier

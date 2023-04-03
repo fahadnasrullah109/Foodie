@@ -21,12 +21,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.foodie.R
 import com.foodie.presentation.auth.login.LoginScreen
-import com.foodie.presentation.auth.login.LoginViewModel
 import com.foodie.presentation.auth.register.RegisterScreen
-import com.foodie.presentation.auth.register.RegisterViewModel
 import com.foodie.ui.theme.FoodieTheme
 import com.foodie.ui.theme.login_signup_bg
 
@@ -88,12 +85,11 @@ fun AuthScreen(
                 0 -> LoginScreen(
                     modifier = modifier.weight(1f),
                     onForgotPassword = onForgotPassword,
-                    onLoginSuccess = onLoginSuccess,
-                    viewModel = viewModel(LoginViewModel::class.java)
+                    onLoginSuccess = onLoginSuccess
                 )
                 else -> RegisterScreen(
-                    modifier = modifier.weight(1f), onRegisterSuccess = onRegisterSuccess,
-                    viewModel = viewModel(RegisterViewModel::class.java)
+                    modifier = modifier.weight(1f),
+                    onRegisterSuccess = onRegisterSuccess
                 )
             }
         }
@@ -102,7 +98,7 @@ fun AuthScreen(
 
 @Preview
 @Composable
-fun AuthScreenPreview() {
+private fun AuthScreenPreview() {
     FoodieTheme {
         AuthScreen(modifier = Modifier.fillMaxWidth(),
             onForgotPassword = {},

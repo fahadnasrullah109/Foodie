@@ -55,13 +55,13 @@ fun NavGraphBuilder.landingGraph(navController: NavController) {
 fun NavGraphBuilder.authGraph(navController: NavController) {
     composable(Destinations.Auth.route) {
         AuthScreen(modifier = Modifier.fillMaxSize(), onForgotPassword = {}, onLoginSuccess = {
-            navController.navigate(route = Destinations.Drawer.route, navOptions = navOptions {
+            navController.navigate(route = Destinations.Drawer.route) {
                 popUpTo(Destinations.Auth.route) { inclusive = true }
-            })
+            }
         }, onRegisterSuccess = {
-            navController.navigate(route = Destinations.Drawer.route, navOptions = navOptions {
+            navController.navigate(route = Destinations.Drawer.route) {
                 popUpTo(Destinations.Auth.route) { inclusive = true }
-            })
+            }
         })
     }
 }
