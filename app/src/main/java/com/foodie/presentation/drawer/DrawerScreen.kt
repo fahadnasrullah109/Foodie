@@ -18,6 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.foodie.R
 import com.foodie.presentation.home.HomeScreen
+import com.foodie.presentation.logout.LogoutDialog
 import com.foodie.presentation.navigation.Destinations
 import com.foodie.ui.theme.FoodieTheme
 import com.foodie.ui.theme.login_signup_bg
@@ -41,6 +42,7 @@ fun DrawerScreen(modifier: Modifier = Modifier, navController: NavController) {
         DrawerItem.SignOut
     )
     var selectedItem by remember { mutableStateOf(drawerItems[0]) }
+    var showLogoutDialog by remember { mutableStateOf(false) }
     ModalNavigationDrawer(drawerState = drawerState, drawerContent = {
         ModalDrawerSheet(drawerContainerColor = MaterialTheme.colorScheme.primary) {
             Spacer(Modifier.height(30.dp))
@@ -64,7 +66,11 @@ fun DrawerScreen(modifier: Modifier = Modifier, navController: NavController) {
                     onClick = {
                         scope.launch { drawerState.close() }
                         selectedItem = item
-                        handleNavigation(selectedItem, navController)
+                        if (selectedItem.title == R.string.signout_label) {
+                            showLogoutDialog = true
+                        } else {
+                            handleNavigation(selectedItem, navController)
+                        }
                     },
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
@@ -96,13 +102,23 @@ fun DrawerScreen(modifier: Modifier = Modifier, navController: NavController) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .padding(start = 20.dp, end = 20.dp),
-                tabIndex = tabIndex
+                    .padding(start = 20.dp, end = 20.dp), tabIndex = tabIndex
             ) {
                 tabIndex = it
             }
         })
     })
+
+    if (showLogoutDialog) {
+        LogoutDialog(onDismiss = {
+            showLogoutDialog = false
+        }) {
+            showLogoutDialog = false
+            navController.navigate(route = Destinations.Auth.route) {
+                popUpTo(Destinations.Drawer.route) { inclusive = true }
+            }
+        }
+    }
 }
 
 private fun handleNavigation(selectedItem: DrawerItem, navController: NavController) {
@@ -112,7 +128,7 @@ private fun handleNavigation(selectedItem: DrawerItem, navController: NavControl
         DrawerItem.Privacy -> navController.navigate(route = Destinations.Privacy.route)
         DrawerItem.Profile -> navController.navigate(route = Destinations.Profile.route)
         DrawerItem.Security -> navController.navigate(route = Destinations.Security.route)
-        DrawerItem.SignOut -> TODO()
+        else -> {}
     }
 }
 

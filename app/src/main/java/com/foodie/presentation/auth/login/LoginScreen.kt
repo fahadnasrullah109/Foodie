@@ -49,7 +49,9 @@ fun LoginScreen(
             onValueChange = { viewModel.onEvent(LoginEvents.EmailChanged(it)) },
             label = { Text(text = stringResource(id = R.string.email_address_label)) },
             singleLine = true,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email, imeAction = ImeAction.Next
+            ),
             textStyle = TextStyle(color = Color.Black),
             modifier = Modifier
                 .fillMaxWidth()
@@ -125,8 +127,7 @@ fun LoginScreen(
             onClick = { viewModel.onEvent(LoginEvents.LoginClicked) })
 
         if (uiState.isLoading) {
-            CircularProgressIndicator(
-                color = Color.White,
+            CircularProgressIndicator(color = Color.White,
                 modifier = Modifier.constrainAs(progress) {
                     bottom.linkTo(loginBtn.bottom)
                     start.linkTo(loginBtn.start)

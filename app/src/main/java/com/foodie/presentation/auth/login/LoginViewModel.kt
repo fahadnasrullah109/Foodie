@@ -47,24 +47,13 @@ class LoginViewModel @Inject constructor(
             it is ValidationResult.Error
         }
         if (hasError) {
-            if (emailResult is ValidationResult.Error) {
-                _uiState.value = _uiState.value.copy(
-                    emailError = emailResult.message
-                )
-            } else {
-                _uiState.value = _uiState.value.copy(
-                    emailError = null
-                )
-            }
-            if (passwordResult is ValidationResult.Error) {
-                _uiState.value = _uiState.value.copy(
-                    passwordError = passwordResult.message
-                )
-            } else {
-                _uiState.value = _uiState.value.copy(
-                    passwordError = null
-                )
-            }
+            _uiState.value = _uiState.value.copy(
+                emailError = if (emailResult is ValidationResult.Error) {
+                    emailResult.message
+                } else null, passwordError = if (passwordResult is ValidationResult.Error) {
+                    passwordResult.message
+                } else null
+            )
         } else {
             showLoading()
             viewModelScope.launch(Dispatchers.IO) {

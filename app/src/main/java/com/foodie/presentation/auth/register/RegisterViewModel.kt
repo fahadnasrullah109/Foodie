@@ -49,21 +49,14 @@ class RegisterViewModel @Inject constructor(
             it is ValidationResult.Error
         }
         if (hasError) {
-            if (usernameResult is ValidationResult.Error) _uiState.value = _uiState.value.copy(
-                usernameError = usernameResult.message
-            ) else _uiState.value = _uiState.value.copy(
-                usernameError = null
-            )
-            if (emailResult is ValidationResult.Error) _uiState.value = _uiState.value.copy(
-                emailError = emailResult.message
-            )
-            else _uiState.value = _uiState.value.copy(
-                emailError = null
-            )
-            if (passwordResult is ValidationResult.Error) _uiState.value = _uiState.value.copy(
-                passwordError = passwordResult.message
-            ) else _uiState.value = _uiState.value.copy(
-                passwordError = null
+            _uiState.value = _uiState.value.copy(
+                usernameError = if (usernameResult is ValidationResult.Error) {
+                    usernameResult.message
+                } else null, emailError = if (emailResult is ValidationResult.Error) {
+                    emailResult.message
+                } else null, passwordError = if (passwordResult is ValidationResult.Error) {
+                    passwordResult.message
+                } else null
             )
         } else {
             showLoading()

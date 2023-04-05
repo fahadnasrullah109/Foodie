@@ -49,7 +49,9 @@ fun RegisterScreen(
             label = { Text(text = stringResource(id = R.string.username_label)) },
             singleLine = true,
             textStyle = TextStyle(color = Color.Black),
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email, imeAction = ImeAction.Next
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .constrainAs(username) {
@@ -142,7 +144,8 @@ fun RegisterScreen(
             onClick = { viewModel.onEvent(RegisterEvents.RegisterClicked) })
 
         if (uiState.isLoading) {
-            CircularProgressIndicator(color = Color.White,
+            CircularProgressIndicator(
+                color = Color.White,
                 modifier = Modifier.constrainAs(progress) {
                     bottom.linkTo(registerBtn.bottom)
                     start.linkTo(registerBtn.start)

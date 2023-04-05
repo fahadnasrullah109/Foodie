@@ -42,4 +42,8 @@
     <string name="password_validation_error">Password is not valid.</string>
     <string name="username_empty_error">Username can\'t be empty.</string>
     <string name="username_validation_error">Username is not valid.</string>
+    <string name="action_logout_yes">Yes</string>
+    <string name="action_logout_no">No</string>
+    <string name="label_logout">Logout</string>
+    <string name="label_logout_message">Are you sure to logout from app?</string>
 </resources>
